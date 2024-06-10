@@ -41,7 +41,7 @@ pipeline {
        stage("SonarQube Analysis"){
            steps {
 	       script {
-		    withSonarQubeEnv(credentialsId: 'Jenkins-Sonarqube-token') { 
+		    withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') { 
                     sh "mvn sonar:sonar"
 		    }
 	        }	
@@ -50,7 +50,7 @@ pipeline {
         stage("Quality Gate"){
             steps {
                 script {
-                     waitForQualityGate abortPipeline: false, credentialsId: 'Jenkins-Sonarqube-token'
+                     waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonarqube-token'
                 }
             }
         
@@ -88,7 +88,7 @@ pipeline {
        stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-16-170-231-171.eu-north-1.compute.amazonaws.com:8080/job/gitops-registerapp-cd/buildWithParameters?token=gitops-token'"
+                    sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-51-20-255-40.eu-north-1.compute.amazonaws.com:8080/job/gitops-registerapp-cd/buildWithParameters?token=gitops-token'"
                 }
             }
         }   
