@@ -37,4 +37,6 @@
    <h1> CSMP Project Tasks </h1>
    <br>
    <h1> CSMP Pr CICD pipeline implementation </h1>
+   <br>
+   <h1> Executing CICD Parllelly </h1>
 </form>
